@@ -1,5 +1,6 @@
 package ru.yandex.practicum;
 
+import ru.yandex.practicum.SecureState;
 import ru.yandex.practicum.impl.SecureStateImpl;
 
 import java.util.Map;
@@ -12,25 +13,42 @@ public class SecureSchool {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        String command = "X";
+        String command = " ";
         do {
             showState();
             if (currentUser == null) {
                 showLogin();
             } else {
                 command = showMenu();
-                state.doAction(currentUser, command.split(" "));
-                if(command.equals("Q")){
-                    currentUser = null;
+                if (command != null) {
+                    String[] parts = command.trim().split("\\s+");
+                    String action = parts[0].toUpperCase();
+                    String[] argsParts = parts.length > 1
+                            ? java.util.Arrays.copyOfRange(parts, 1, parts.length)
+                            : new String[0];
+
+                    String result = state.doAction(action, argsParts);
+
+                    if (result != null && !result.isBlank() && !"OK".equalsIgnoreCase(result)) {
+                        System.out.println(result);
+                    }
+
+                    if ("H".equals(action)) {
+                        showHistory();
+                    }
+
+                    if ("Q".equals(action)) {
+                        currentUser = null;
+                    }
                 }
             }
-        } while (command.equals("X"));
+        } while (!"X".equals(command));
         showHistory();
     }
 
     private static String showMenu() {
         System.out.println("== [ Menu ] ==");
-        System.out.println("E) Enter area:   \n      1) School ");
+        System.out.println("E) Enter area:   \n     1) School ");
         System.out.println("     2) Owl Cabin");
         System.out.println("     3) Teachers Room");
         System.out.println("     4) Class A, B, C, or D");
@@ -64,7 +82,7 @@ public class SecureSchool {
                     } else {
                         try {
                             int area = Integer.parseInt(commandParts[1]);
-                            if (area > 1 && area <= 3) {
+                            if (area >= 1 && area <= 3) {
                                 if (commandParts.length > 2) {
                                     System.out.println("Too many arguments");
                                     command = null;
