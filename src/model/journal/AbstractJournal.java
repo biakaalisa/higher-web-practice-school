@@ -34,7 +34,9 @@ public abstract class AbstractJournal implements JournalInterface {
     @Override
     public void addGrade(UserInterface teacher, UserInterface student, int grade) {
         if (!canUserEdit(teacher)) {
-            throw new SecurityException("User " + teacher.getName() + " cannot edit journal.");
+            throw new SecurityException(
+                    String.format("User %s cannot edit journal.", teacher.getName())
+            );
         }
         String studentName = student.getName();
         journal.putIfAbsent(studentName, new ArrayList<>());

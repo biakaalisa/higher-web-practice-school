@@ -1,6 +1,5 @@
 package ru.yandex.practicum.impl;
 
-import model.condition.DirectorPresentCondition;
 import model.condition.OwnChildOnlyCondition;
 import model.condition.TeacherPresentCondition;
 import model.journal.JournalInterface;
@@ -11,7 +10,6 @@ import model.permission.*;
 import model.role.*;
 import model.user.User;
 import model.user.UserInterface;
-import model.condition.Condition;
 import ru.yandex.practicum.SecureState;
 
 import service.auth.AuthenticationService;

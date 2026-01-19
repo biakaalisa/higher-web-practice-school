@@ -1,9 +1,7 @@
 package ru.yandex.practicum;
 
-import ru.yandex.practicum.SecureState;
 import ru.yandex.practicum.impl.SecureStateImpl;
 
-import java.util.Map;
 import java.util.Scanner;
 
 public class SecureSchool {

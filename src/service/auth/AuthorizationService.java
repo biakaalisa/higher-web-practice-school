@@ -2,7 +2,6 @@ package service.auth;
 
 import model.condition.Condition;
 import model.permission.Permission;
-import model.user.User;
 import model.user.UserInterface;
 import service.state.SchoolState;
 

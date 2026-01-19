@@ -11,10 +11,7 @@ public class SchoolJournal extends AbstractJournal {
         if (Roles.PARENT == userRole) {
             return user.getChildrenNames().contains(targetStudent.getName());
         }
-        if (Roles.TEACHER == userRole || Roles.CHIEF == userRole || Roles.ADMIN == userRole) {
-            return true;
-        }
-        return false;
+        return Roles.TEACHER == userRole || Roles.CHIEF == userRole || Roles.ADMIN == userRole;
     }
 
     @Override

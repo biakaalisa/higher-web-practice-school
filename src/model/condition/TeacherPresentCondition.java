@@ -1,8 +1,6 @@
 package model.condition;
 
 import model.location.Location;
-import model.user.User;
-import model.role.Roles;
 import model.user.UserInterface;
 
 public class TeacherPresentCondition extends AbstractCondition {
